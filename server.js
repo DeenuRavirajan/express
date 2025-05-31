@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
-const router = require('./routers/egRoutes')
+const router = require('./routers/egRouter')
 const app=express();
 connectDB();
 dotenv.config();

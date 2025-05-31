@@ -1,33 +1,9 @@
 const express = require('express')
-const userRouter = express.Router();
-const { SignUp, Login } = require('../controllers/userController')
-userRouter.post('/signup',SignUp);
-userRouter.post('/login',Login);
-
-
-module.exports = userRouter
-
-
-Controllers/userControllers.js
-const User = require("../models/user");
-
-
-exports.SignUp= async(req,res)=>{
-    const {username,password} = req.body;
-    const exist = await User.findOne({username})
-    if(exist) return res.status(404).json({mesage:"User already Exist"})
-    const newUser = new User({username,password})
-    await newUser.save();
-    res.status(201).json({
-        message:"User Created successfully",
-        user:newUser
-    })
-}
-exports.Login= async (req,res)=>{
-    const {username,password} = req.body;
-    const exist = await User.findOne({username})
-    if(!exist) return res.status(404).json({mesage:"Given username and password is not valid"})
-    res.status(201).json({
-        message:"User Login successfully",
-    })
-}
+const router = express.Router()
+const {getRoute,getByIdRoute,postRoute,putRoute,deleteRoute} = require('../controllers/egController')
+router.get('/get',getRoute)
+router.get('/get/:id',getByIdRoute)
+router.post('/post',postRoute)
+router.put('/put/:id',putRoute)
+router.delete('/delete/:id',deleteRoute)
+module.exports = router
