@@ -2,9 +2,8 @@ const Todo= require('../models/todo')
 
 
 exports.getRoute=async(req,res)=>{
-    // const todoList = await Todo.find();
-    // res.json(todoList)
-    res.send("get working")
+    const todoList = await Todo.find();
+    res.json(todoList)
 }
 exports.getByIdRoute=async(req,res)=>{
     const Task = await Todo.findById(req.params.id)
